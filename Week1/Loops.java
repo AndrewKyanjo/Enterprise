@@ -1,3 +1,4 @@
+
 /**
  * DAY 5 – Loops  (VERY IMPORTANT)
  *
@@ -42,8 +43,8 @@ public class Loops {
 
         // Single table for a specific number using while loop
         System.out.println("\n--- Table of 7 (while loop) ---");
-        int n   = 7;
-        int i   = 1;
+        int n = 7;
+        int i = 1;
         while (i <= 12) {
             System.out.printf("%2d × %2d = %3d%n", n, i, n * i);
             i++;   // don't forget – missing this = infinite loop!
@@ -59,10 +60,15 @@ public class Loops {
     //  If any divides evenly → NOT prime. Break early.
     // ─────────────────────────────────────────────────────────
     static boolean isPrime(int num) {
-        if (num < 2) return false;           // 0 and 1 are NOT prime
-        if (num == 2) return true;           // 2 is the only even prime
-        if (num % 2 == 0) return false;      // all other even numbers → not prime
+        if (num < 2) {
+            return false;           // 0 and 1 are NOT prime
 
+                }if (num == 2) {
+            return true;           // 2 is the only even prime
+
+                }if (num % 2 == 0) {
+            return false;      // all other even numbers → not prime
+        }
         // Only check odd divisors up to √num  (optimisation)
         for (int d = 3; d <= Math.sqrt(num); d += 2) {
             if (num % d == 0) {
@@ -78,11 +84,15 @@ public class Loops {
         int count = 0;
         // for loop + continue: skip non-primes, print primes
         for (int num = 2; num <= limit; num++) {
-            if (!isPrime(num)) continue;    // skip non-prime, go to next num
-            System.out.printf("%4d", num);
+            if (!isPrime(num)) {
+                continue;    // skip non-prime, go to next num
+
+                        }System.out.printf("%4d", num);
             count++;
-            if (count % 10 == 0) System.out.println(); // newline every 10 primes
-        }
+            if (count % 10 == 0) {
+                System.out.println(); // newline every 10 primes
+
+                    }}
         System.out.printf("%n%nTotal primes found: %d%n", count);
 
         // Quick look-ups
@@ -102,7 +112,9 @@ public class Loops {
     //        long overflows at 21!, use BigInteger for larger
     // ─────────────────────────────────────────────────────────
     static long factorialFor(int n) {
-        if (n < 0) throw new IllegalArgumentException("n must be >= 0");
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be >= 0");
+        }
         long result = 1;
         for (int i = 2; i <= n; i++) {   // start at 2 (multiplying by 1 changes nothing)
             result *= i;
@@ -111,9 +123,11 @@ public class Loops {
     }
 
     static long factorialWhile(int n) {
-        if (n < 0) throw new IllegalArgumentException("n must be >= 0");
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be >= 0");
+        }
         long result = 1;
-        int  i = n;
+        int i = n;
         while (i > 1) {
             result *= i;
             i--;
@@ -122,10 +136,14 @@ public class Loops {
     }
 
     static long factorialDoWhile(int n) {
-        if (n < 0) throw new IllegalArgumentException("n must be >= 0");
-        if (n == 0) return 1;
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be >= 0");
+        }
+        if (n == 0) {
+            return 1;
+        }
         long result = 1;
-        int  i = n;
+        int i = n;
         // do-while guarantees the body runs AT LEAST once
         do {
             result *= i;
@@ -172,8 +190,10 @@ public class Loops {
         // continue: print only numbers NOT divisible by 3
         System.out.print("1-20 skipping multiples of 3: ");
         for (int i = 1; i <= 20; i++) {
-            if (i % 3 == 0) continue;   // ← skips to next iteration
-            System.out.print(i + " ");
+            if (i % 3 == 0) {
+                continue;   // ← skips to next iteration
+
+                        }System.out.print(i + " ");
         }
         System.out.println();
 

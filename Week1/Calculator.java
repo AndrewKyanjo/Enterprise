@@ -1,3 +1,4 @@
+
 /**
  * DAY 2 – Variables & Data Types
  * File 1 of 3: Calculator with 2 numbers
@@ -9,8 +10,8 @@ public class Calculator {
     public static void main(String[] args) {
 
         // ── Primitive declarations ────────────────────────────
-        int    a = 2_000_000_000; // underscores are legal in numbers (readability)
-        int    b = 2_000_000_000;
+        int a = 2_000_000_000; // underscores are legal in numbers (readability)
+        int b = 2_000_000_000;
         double x = 15.75;
         double y = 4.20;
 

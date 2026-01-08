@@ -1,3 +1,4 @@
+
 /**
  * DAY 2 – Variables & Data Types
  * File 2 of 3: Temperature Converter
@@ -14,7 +15,7 @@ public class TemperatureConverter {
     public static void main(String[] args) {
 
         // ── Starting values ───────────────────────────────────
-        double celsius    = 100.0;   // boiling point of water
+        double celsius = 100.0;   // boiling point of water
         double fahrenheit = 32.0;    // freezing point in °F
         double kelvin;
 

@@ -1,3 +1,4 @@
+
 /**
  * DAY 2 – Variables & Data Types
  * File 3 of 3: Area of Circle
@@ -23,15 +24,15 @@ public class AreaOfCircle {
         computeAndPrint(radius3);
 
         // ── Casting demo: store result as float ──────────────
-        float areaAsFloat = (float)(Math.PI * radius1 * radius1);
+        float areaAsFloat = (float) (Math.PI * radius1 * radius1);
         System.out.println("\nArea as float (less precision): " + areaAsFloat);
-        System.out.println("Area as double (more precision): " +
-                (Math.PI * radius1 * radius1));
+        System.out.println("Area as double (more precision): "
+                + (Math.PI * radius1 * radius1));
     }
 
     // Helper method (preview of Day 6 concepts)
     static void computeAndPrint(double r) {
-        double area          = Math.PI * r * r;          // π × r²
+        double area = Math.PI * r * r;          // π × r²
         double circumference = 2 * Math.PI * r;          // 2πr
 
         System.out.printf("%nRadius        : %.2f%n", r);

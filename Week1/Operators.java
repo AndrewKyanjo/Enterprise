@@ -1,17 +1,14 @@
+
 /**
  * DAY 3 – Operators & Expressions
  *
  * Covers:
- *   ✔ Arithmetic operators   + - * / % 
- *   ✔ Relational operators   == != > < >= <=
- *   ✔ Logical operators      && || !
- *   ✔ Increment / Decrement  ++ --  (prefix vs postfix)
- *   ✔ Short-circuit behaviour
+ *   ✔ Arithmetic operators   + - * / %
+ *   ✔ Relational operators   == != > < >= <= ✔ Logical operators && || ! ✔
+ * Increment / Decrement ++ -- (prefix vs postfix) ✔ Short-circuit behaviour
  *
- * Three programs in one file for convenience:
- *   1) EvenOddChecker
- *   2) SimpleInterestCalculator
- *   3) GradeEvaluator
+ * Three programs in one file for convenience: 1) EvenOddChecker 2)
+ * SimpleInterestCalculator 3) GradeEvaluator
  */
 public class Operators {
 
@@ -39,18 +36,18 @@ public class Operators {
         System.out.println("\n===== SIMPLE INTEREST CALCULATOR =====");
 
         double principal = 50_000.0;   // ₹ 50,000 loan
-        double rate      = 8.5;        // 8.5% per annum
-        double time      = 3.0;        // 3 years
+        double rate = 8.5;        // 8.5% per annum
+        double time = 3.0;        // 3 years
 
         // Arithmetic
         double simpleInterest = (principal * rate * time) / 100.0;
-        double totalAmount    = principal + simpleInterest;
+        double totalAmount = principal + simpleInterest;
 
-        System.out.printf("Principal : ₹ %.2f%n",  principal);
+        System.out.printf("Principal : ₹ %.2f%n", principal);
         System.out.printf("Rate      : %.2f %%%n", rate);
         System.out.printf("Time      : %.0f years%n", time);
-        System.out.printf("SI        : ₹ %.2f%n",  simpleInterest);
-        System.out.printf("Total     : ₹ %.2f%n",  totalAmount);
+        System.out.printf("SI        : ₹ %.2f%n", simpleInterest);
+        System.out.printf("Total     : ₹ %.2f%n", totalAmount);
 
         // Relational + logical: is the interest more than ₹10k AND rate > 5%?
         boolean highInterest = (simpleInterest > 10_000) && (rate > 5.0);
@@ -69,11 +66,17 @@ public class Operators {
             char grade;
 
             // Relational operators chained with logical &&
-            if      (score >= 90)               grade = 'A';
-            else if (score >= 80 && score < 90) grade = 'B';
-            else if (score >= 70 && score < 80) grade = 'C';
-            else if (score >= 60 && score < 70) grade = 'D';
-            else                                grade = 'F';
+            if (score >= 90) {
+                grade = 'A'; 
+            }else if (score >= 80 && score < 90) {
+                grade = 'B'; 
+            }else if (score >= 70 && score < 80) {
+                grade = 'C'; 
+            }else if (score >= 60 && score < 70) {
+                grade = 'D'; 
+            }else {
+                grade = 'F';
+            }
 
             // ! (NOT) operator
             boolean passed = !(grade == 'F');
@@ -110,11 +113,16 @@ public class Operators {
 
         System.out.println("\n===== COMPOUND ASSIGNMENT =====");
         int n = 20;
-        n += 5;  System.out.println("n += 5  → " + n);  // 25
-        n -= 3;  System.out.println("n -= 3  → " + n);  // 22
-        n *= 2;  System.out.println("n *= 2  → " + n);  // 44
-        n /= 4;  System.out.println("n /= 4  → " + n);  // 11
-        n %= 3;  System.out.println("n %= 3  → " + n);  // 2
+        n += 5;
+        System.out.println("n += 5  → " + n);  // 25
+        n -= 3;
+        System.out.println("n -= 3  → " + n);  // 22
+        n *= 2;
+        System.out.println("n *= 2  → " + n);  // 44
+        n /= 4;
+        System.out.println("n /= 4  → " + n);  // 11
+        n %= 3;
+        System.out.println("n %= 3  → " + n);  // 2
     }
 
     // ─────────────────────────────────────────────────────────

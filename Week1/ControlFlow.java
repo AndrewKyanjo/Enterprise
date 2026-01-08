@@ -26,18 +26,18 @@ public class ControlFlow {
         System.out.println("║    ATM WITHDRAWAL SIMULATION ║");
         System.out.println("╚══════════════════════════════╝");
 
-        double balance         = 15_000.0;
-        int    correctPin      = 4872;
+        double balance = 15_000.0;
+        int correctPin = 4872;
         double withdrawalLimit = 10_000.0;
 
         // Simulate three different ATM sessions
-        int[]    pins      = {1234, 4872, 4872};
-        double[] amounts   = {500.0, 20_000.0, 4_500.0};
+        int[] pins = {1234, 4872, 4872};
+        double[] amounts = {500.0, 20_000.0, 4_500.0};
 
         for (int i = 0; i < pins.length; i++) {
             double currentBalance = balance; // reset per simulation
-            int    enteredPin     = pins[i];
-            double requestAmount  = amounts[i];
+            int enteredPin = pins[i];
+            double requestAmount = amounts[i];
 
             System.out.printf("%n-- Session %d  |  PIN: %d  |  Request: ₹%.0f --%n",
                     i + 1, enteredPin, requestAmount);
@@ -85,14 +85,14 @@ public class ControlFlow {
             {2, 100, 45},
             {3, 6, 9},
             {4, 22, 7},
-            {5, 16, 4},   // modulo
-            {9, 0, 0}     // invalid choice
+            {5, 16, 4}, // modulo
+            {9, 0, 0} // invalid choice
         };
 
         for (double[] tc : testCases) {
-            int    choice = (int) tc[0];
-            double a      = tc[1];
-            double b      = tc[2];
+            int choice = (int) tc[0];
+            double a = tc[1];
+            double b = tc[2];
 
             System.out.println("\n  Menu:");
             System.out.println("  1) Addition    2) Subtraction");
@@ -106,21 +106,21 @@ public class ControlFlow {
             // ── Switch statement ─────────────────────────────
             switch (choice) {
                 case 1:
-                    result    = a + b;
+                    result = a + b;
                     operation = "Addition";
                     System.out.printf("  %s: %.2f + %.2f = %.2f%n",
                             operation, a, b, result);
                     break;
 
                 case 2:
-                    result    = a - b;
+                    result = a - b;
                     operation = "Subtraction";
                     System.out.printf("  %s: %.2f - %.2f = %.2f%n",
                             operation, a, b, result);
                     break;
 
                 case 3:
-                    result    = a * b;
+                    result = a * b;
                     operation = "Multiplication";
                     System.out.printf("  %s: %.2f × %.2f = %.2f%n",
                             operation, a, b, result);
@@ -163,17 +163,17 @@ public class ControlFlow {
     static void ternaryShowcase() {
         System.out.println("\n===== TERNARY OPERATOR SHOWCASE =====");
 
-        int age   = 20;
+        int age = 20;
         String status = (age >= 18) ? "Adult" : "Minor";
         System.out.println("Age " + age + " → " + status);
 
         // Nested ternary (use sparingly – hurts readability)
         int score = 73;
         String grade = (score >= 90) ? "A"
-                     : (score >= 80) ? "B"
-                     : (score >= 70) ? "C"
-                     : (score >= 60) ? "D"
-                     : "F";
+                : (score >= 80) ? "B"
+                        : (score >= 70) ? "C"
+                                : (score >= 60) ? "D"
+                                        : "F";
         System.out.println("Score " + score + " → Grade " + grade);
 
         // Ternary in print directly
