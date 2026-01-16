@@ -1,3 +1,4 @@
+
 /**
  * ╔══════════════════════════════════════════════════════════╗
  *  DAY 15 – Arrays  (Deep Dive)
@@ -88,19 +89,27 @@ public class ArraysDeepDive {
 
         // Enhanced for-each (when you don't need the index)
         System.out.print("\nfor-each        : ");
-        for (int val : data) System.out.print(val + " ");
+        for (int val : data) {
+            System.out.print(val + " ");
+        }
 
         // While loop (useful for unknown-length traversal)
         System.out.print("\nwhile-loop      : ");
         int i = data.length - 1;
-        while (i >= 0) { System.out.print(data[i--] + " "); }  // reverse
+        while (i >= 0) {
+            System.out.print(data[i--] + " ");
+        }  // reverse
 
         // Statistical pass
         int sum = 0, max = data[0], min = data[0];
         for (int v : data) {
             sum += v;
-            if (v > max) max = v;
-            if (v < min) min = v;
+            if (v > max) {
+                max = v;
+            }
+            if (v < min) {
+                min = v;
+            }
         }
         System.out.printf("%n%nSum=%-5d  Max=%-5d  Min=%-5d  Avg=%.2f%n",
                 sum, max, min, (double) sum / data.length);
@@ -109,24 +118,25 @@ public class ArraysDeepDive {
     // ═══════════════════════════════════════════════════════
     //  SECTION 3 – SEARCHING
     // ═══════════════════════════════════════════════════════
-
     /**
-     * LINEAR SEARCH – O(n)
-     * Checks every element until target is found or array exhausted.
-     * Works on UNSORTED arrays.
+     * LINEAR SEARCH – O(n) Checks every element until target is found or array
+     * exhausted. Works on UNSORTED arrays.
+     *
      * @return index of target, or -1 if not found
      */
     static int linearSearch(int[] arr, int target) {
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == target) return i;
+            if (arr[i] == target) {
+                return i;
+            }
         }
         return -1;
     }
 
     /**
-     * BINARY SEARCH – O(log n)
-     * Repeatedly halves the search space.
-     * Requires a SORTED array.
+     * BINARY SEARCH – O(log n) Repeatedly halves the search space. Requires a
+     * SORTED array.
+     *
      * @return index of target, or -1 if not found
      */
     static int binarySearch(int[] arr, int target) {
@@ -135,10 +145,14 @@ public class ArraysDeepDive {
         while (low <= high) {
             int mid = low + (high - low) / 2;   // avoids overflow vs (low+high)/2
 
-            if (arr[mid] == target) return mid;
-            else if (arr[mid] < target) low  = mid + 1;  // target is in right half
-            else                        high = mid - 1;  // target is in left half
-        }
+            if (arr[mid] == target) {
+                return mid; 
+            }else if (arr[mid] < target) {
+                low = mid + 1;  // target is in right half
+             }else {
+                high = mid - 1;  // target is in left half
+
+                    }}
         return -1;
     }
 
@@ -148,7 +162,7 @@ public class ArraysDeepDive {
         System.out.println("╚══════════════════════════════════════╝");
 
         int[] unsorted = {84, 62, 91, 45, 78, 55, 97, 33};
-        int[] sorted   = {10, 23, 35, 47, 56, 68, 79, 82, 91, 100};
+        int[] sorted = {10, 23, 35, 47, 56, 68, 79, 82, 91, 100};
 
         System.out.println("Array (unsorted): " + Arrays.toString(unsorted));
         int[] targets = {78, 45, 200};
@@ -167,21 +181,23 @@ public class ArraysDeepDive {
         }
 
         // Built-in
-        System.out.println("\n  Arrays.binarySearch(sorted, 56) = " +
-                Arrays.binarySearch(sorted, 56));
+        System.out.println("\n  Arrays.binarySearch(sorted, 56) = "
+                + Arrays.binarySearch(sorted, 56));
     }
 
     // ═══════════════════════════════════════════════════════
     //  SECTION 4 – SORTING
     // ═══════════════════════════════════════════════════════
-
-    /** Utility: clone so original is preserved for each sort demo */
-    static int[] copy(int[] src) { return Arrays.copyOf(src, src.length); }
+    /**
+     * Utility: clone so original is preserved for each sort demo
+     */
+    static int[] copy(int[] src) {
+        return Arrays.copyOf(src, src.length);
+    }
 
     /**
-     * BUBBLE SORT – O(n²)
-     * Repeatedly swaps adjacent elements that are out of order.
-     * Each pass "bubbles" the largest unsorted element to its place.
+     * BUBBLE SORT – O(n²) Repeatedly swaps adjacent elements that are out of
+     * order. Each pass "bubbles" the largest unsorted element to its place.
      * Optimised: early exit if no swaps in a pass (already sorted).
      */
     static void bubbleSort(int[] arr) {
@@ -190,46 +206,48 @@ public class ArraysDeepDive {
             boolean swapped = false;
             for (int j = 0; j < n - 1 - pass; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    int tmp   = arr[j];
-                    arr[j]    = arr[j + 1];
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
                     arr[j + 1] = tmp;
                     swapped = true;
                 }
             }
-            if (!swapped) break;  // already sorted → exit early
-        }
+            if (!swapped) {
+                break;  // already sorted → exit early
+
+                    }}
     }
 
     /**
-     * SELECTION SORT – O(n²)
-     * Finds the minimum element in the unsorted portion and
-     * swaps it to the front. Fewest swaps of the three.
+     * SELECTION SORT – O(n²) Finds the minimum element in the unsorted portion
+     * and swaps it to the front. Fewest swaps of the three.
      */
     static void selectionSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             int minIdx = i;
             for (int j = i + 1; j < n; j++) {
-                if (arr[j] < arr[minIdx]) minIdx = j;
+                if (arr[j] < arr[minIdx]) {
+                    minIdx = j;
+                }
             }
             // swap arr[i] with arr[minIdx]
-            int tmp    = arr[minIdx];
+            int tmp = arr[minIdx];
             arr[minIdx] = arr[i];
-            arr[i]     = tmp;
+            arr[i] = tmp;
         }
     }
 
     /**
-     * INSERTION SORT – O(n²) worst, O(n) best
-     * Builds the sorted portion one element at a time by
-     * inserting each new element into its correct position.
-     * Excellent for nearly-sorted data.
+     * INSERTION SORT – O(n²) worst, O(n) best Builds the sorted portion one
+     * element at a time by inserting each new element into its correct
+     * position. Excellent for nearly-sorted data.
      */
     static void insertionSort(int[] arr) {
         int n = arr.length;
         for (int i = 1; i < n; i++) {
             int key = arr[i];   // element to insert
-            int j   = i - 1;
+            int j = i - 1;
             // shift elements right until correct slot found
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
@@ -247,17 +265,21 @@ public class ArraysDeepDive {
         int[] original = {64, 25, 12, 22, 11, 90, 37, 54};
         System.out.println("Original : " + Arrays.toString(original));
 
-        int[] b = copy(original); bubbleSort(b);
+        int[] b = copy(original);
+        bubbleSort(b);
         System.out.println("Bubble   : " + Arrays.toString(b));
 
-        int[] s = copy(original); selectionSort(s);
+        int[] s = copy(original);
+        selectionSort(s);
         System.out.println("Selection: " + Arrays.toString(s));
 
-        int[] ins = copy(original); insertionSort(ins);
+        int[] ins = copy(original);
+        insertionSort(ins);
         System.out.println("Insertion: " + Arrays.toString(ins));
 
         // Built-in (TimSort – O(n log n))
-        int[] built = copy(original); Arrays.sort(built);
+        int[] built = copy(original);
+        Arrays.sort(built);
         System.out.println("Arrays.sort (built-in): " + Arrays.toString(built));
 
         // Complexity summary
