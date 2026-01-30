@@ -1,4 +1,5 @@
 // Day28_29.java
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -7,17 +8,18 @@ import java.util.stream.Collectors;
 
 /**
  * Day 28-29: Final Project – CLI Task Manager with File Persistence
- * 
- * Features:
- * - Add, delete, mark complete, list tasks
- * - Save/load tasks to/from "tasks.txt"
- * - Filter by status and priority
+ *
+ * Features: - Add, delete, mark complete, list tasks - Save/load tasks to/from
+ * "tasks.txt" - Filter by status and priority
  */
 public class Day28_29 {
 
     // ---------- Task class with nested Priority enum ----------
     public static class Task {
-        public enum Priority { LOW, MEDIUM, HIGH }
+
+        public enum Priority {
+            LOW, MEDIUM, HIGH
+        }
 
         private static int idCounter = 1; // will be overwritten when loading
         private int id;
@@ -43,16 +45,35 @@ public class Day28_29 {
             this.priority = priority;
             this.completed = completed;
             // update idCounter if necessary
-            if (id >= idCounter) idCounter = id + 1;
+            if (id >= idCounter) {
+                idCounter = id + 1;
+            }
         }
 
         // Getters / Setters
-        public int getId() { return id; }
-        public String getDescription() { return description; }
-        public LocalDate getDueDate() { return dueDate; }
-        public Priority getPriority() { return priority; }
-        public boolean isCompleted() { return completed; }
-        public void setCompleted(boolean completed) { this.completed = completed; }
+        public int getId() {
+            return id;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public LocalDate getDueDate() {
+            return dueDate;
+        }
+
+        public Priority getPriority() {
+            return priority;
+        }
+
+        public boolean isCompleted() {
+            return completed;
+        }
+
+        public void setCompleted(boolean completed) {
+            this.completed = completed;
+        }
 
         @Override
         public String toString() {
@@ -86,6 +107,7 @@ public class Day28_29 {
 
     // ---------- TaskManager: business logic + file I/O ----------
     public static class TaskManager {
+
         private final List<Task> tasks = new ArrayList<>();
         private final String filename;
 
@@ -104,9 +126,13 @@ public class Day28_29 {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = br.readLine()) != null) {
-                    if (line.isBlank()) continue;
+                    if (line.isBlank()) {
+                        continue;
+                    }
                     Task t = Task.fromCsv(line);
-                    if (t != null) tasks.add(t);
+                    if (t != null) {
+                        tasks.add(t);
+                    }
                 }
                 System.out.println("Loaded " + tasks.size() + " tasks from " + filename);
             } catch (IOException e) {
@@ -137,7 +163,9 @@ public class Day28_29 {
 
         public boolean deleteTask(int id) {
             boolean removed = tasks.removeIf(t -> t.getId() == id);
-            if (removed) saveToFile();
+            if (removed) {
+                saveToFile();
+            }
             return removed;
         }
 
@@ -180,16 +208,26 @@ public class Day28_29 {
             printMenu();
             choice = readInt("Enter your choice: ");
             switch (choice) {
-                case 1 -> addTask();
-                case 2 -> deleteTask();
-                case 3 -> markTaskComplete();
-                case 4 -> listAllTasks();
-                case 5 -> listTasksByStatus(true);   // completed
-                case 6 -> listTasksByStatus(false);  // pending
-                case 7 -> listTasksByPriority();
-                case 8 -> manager.saveToFile();      // manual save
-                case 9 -> System.out.println("Exiting...");
-                default -> System.out.println("Invalid choice.");
+                case 1 ->
+                    addTask();
+                case 2 ->
+                    deleteTask();
+                case 3 ->
+                    markTaskComplete();
+                case 4 ->
+                    listAllTasks();
+                case 5 ->
+                    listTasksByStatus(true);   // completed
+                case 6 ->
+                    listTasksByStatus(false);  // pending
+                case 7 ->
+                    listTasksByPriority();
+                case 8 ->
+                    manager.saveToFile();      // manual save
+                case 9 ->
+                    System.out.println("Exiting...");
+                default ->
+                    System.out.println("Invalid choice.");
             }
         } while (choice != 9);
     }
@@ -251,16 +289,22 @@ public class Day28_29 {
 
     private static void listAllTasks() {
         List<Task> tasks = manager.getAllTasks();
-        if (tasks.isEmpty()) System.out.println("No tasks.");
-        else tasks.forEach(System.out::println);
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks."); 
+        }else {
+            tasks.forEach(System.out::println);
+        }
     }
 
     private static void listTasksByStatus(boolean completed) {
         List<Task> tasks = manager.getTasks(completed);
         String status = completed ? "Completed" : "Pending";
         System.out.println("--- " + status + " Tasks ---");
-        if (tasks.isEmpty()) System.out.println("None.");
-        else tasks.forEach(System.out::println);
+        if (tasks.isEmpty()) {
+            System.out.println("None."); 
+        }else {
+            tasks.forEach(System.out::println);
+        }
     }
 
     private static void listTasksByPriority() {
@@ -269,8 +313,11 @@ public class Day28_29 {
             Task.Priority priority = Task.Priority.valueOf(scanner.nextLine().trim().toUpperCase());
             List<Task> tasks = manager.getTasksByPriority(priority);
             System.out.println("--- Priority: " + priority + " ---");
-            if (tasks.isEmpty()) System.out.println("No tasks.");
-            else tasks.forEach(System.out::println);
+            if (tasks.isEmpty()) {
+                System.out.println("No tasks."); 
+            }else {
+                tasks.forEach(System.out::println);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid priority.");
         }
